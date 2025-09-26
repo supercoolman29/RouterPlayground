@@ -4,6 +4,7 @@ import { Button, StyleSheet, Text, TouchableOpacity, Pressable, View } from 'rea
 import { Image } from "expo-image";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 export default function Camera() {
   const [facing, setFacing] = useState('back');
@@ -34,7 +35,7 @@ export default function Camera() {
   };
 
   
-  function toggleCameraFacing() {
+  const toggleCameraFacing = () => {
     setFacing(current => (current === 'back' ? 'front' : 'back'));
   }
 
@@ -67,13 +68,13 @@ export default function Camera() {
           responsiveOrientationWhenOrientationLocked
         />
         <View style={styles.shutterContainer}>
-          <Pressable onPress={toggleMode}>
+          {/* <Pressable onPress={toggleMode}>
             {mode === "picture" ? (
               <AntDesign name="picture" size={32} color="white" />
             ) : (
               <Feather name="video" size={32} color="white" />
             )}
-          </Pressable>
+          </Pressable> */}
           <Pressable onPress={mode === "picture" ? takePicture : recordVideo}>
             {({ pressed }) => (
               <View
@@ -95,7 +96,7 @@ export default function Camera() {
               </View>
             )}
           </Pressable>
-          <Pressable onPress={toggleFacing}>
+          <Pressable onPress={toggleCameraFacing}>
             <FontAwesome6 name="rotate-left" size={32} color="white" />
           </Pressable>
         </View>
@@ -105,12 +106,6 @@ export default function Camera() {
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} facing={facing}/>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-          <Text style={styles.text}>Flip Camera</Text>
-        </TouchableOpacity>
-      </View>
       {uri ? renderPicture(uri) : renderCamera()}
     </View>
   );

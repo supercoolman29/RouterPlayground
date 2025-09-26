@@ -10,6 +10,7 @@ export default function Index() {
       <LinkButton page="contact" title= "Go to contact page"/>
       <LinkButton page="profile" title= "Go to profile page"/>
       <LinkButton page= "camera" title= "Go to camera page"/>
+      <LinkButton page= "gallery" title= "Go to gallery page"/>
     </View>
   );
 }
