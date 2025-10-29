@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import LinkButton from '../components/LinkButton';
 import { StyleSheet, Text, View } from 'react-native';
+import myColors from '../constants/colorSheet';
 
 export default function Index() {
   return (
@@ -18,7 +19,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: myColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
