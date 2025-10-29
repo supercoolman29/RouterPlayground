@@ -1,33 +1,34 @@
 import { StyleSheet, Text, View, Pressable, Image, } from 'react-native';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6'; //X
 import Feather from '@expo/vector-icons/Feather'; //O
-import MaterialIcons from '@expo/vector-icons/MaterialIcons'; //Grid
 import { useState } from 'react'; 
 
 export default function TicTacToe() {
-  const [gameBoard, setGameBoard] = useState(["-", "-", "-", "-", "-", "-", "-", "-", "-"]);
-  const [turn, setTurn] = useState(true);
-  const [available, setAvailable] = useState([1,2,3,4,5,6,7,8,9]);
+  const [gameBoard, setGameBoard] = useState("-", "-", "-", "-", "-", "-", "-", "-", "-");
+  const [claimed, setClaimed] = useState(false);
   
-  
-  const move = (turn, num) => {
-    if(turn){
-      setGameBoard[num] = "X"
-      available[num-1].remove()
-    }
-    else {
-      
-    }
+  const move = (x) => {
+    // gameBoard[x] = "X"
+    setClaimed(true)
+    
   }
   
 
   return(
     <View style = {styles.container}>
       <View style={{ ...styles.press, marginRight: 285, marginBottom: 285}}> {/*1*/}
-        <Pressable onPress={move}/>
+        if(claimed){
+          <Image 
+            source={require('../assets/X.png')} 
+            style={styles.image} 
+          />
+        }
+        <Pressable onPress={
+          move(0)
+        }/>
       </View>
       <View style={{ ...styles.press, marginBottom: 285}}> {/*2*/}
-        <Pressable onPress={move}/>
+        <Pressable onPress={move(1)}/>
       </View>
       <View style={{ ...styles.press, marginBottom: 285, marginLeft: 285}}> {/*3*/}
         <Pressable onPress={move}/>
@@ -51,7 +52,7 @@ export default function TicTacToe() {
         <Pressable onPress={move}/>
       </View>
       <Image 
-        source={require('../assets/image-removebg-preview.png')} 
+        source={require('../assets/grid.png')} 
         style={styles.image} 
       />
     </View>
